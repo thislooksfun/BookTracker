@@ -137,6 +137,7 @@ class FinishSessionController: ThemedViewController, UITextFieldDelegate {
 	}
 	
 	@IBAction func close(_ sender: Any? = nil) {
+		
 		self.dismiss(animated: false) {
 			self.rsc.dismiss(animated: true, completion: nil)
 		}
