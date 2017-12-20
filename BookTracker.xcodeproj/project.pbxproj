@@ -244,6 +244,7 @@
 				F4564F591FE31B7E001B080E /* Sources */,
 				F4564F5A1FE31B7E001B080E /* Frameworks */,
 				F4564F5B1FE31B7E001B080E /* Resources */,
+				F47044241FEA278E00DA853B /* Set Version Info */,
 			);
 			buildRules = (
 			);
@@ -362,6 +363,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		F47044241FEA278E00DA853B /* Set Version Info */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Set Version Info";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = $SRCROOT/Scripts/set_version_info.sh;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		F4564F591FE31B7E001B080E /* Sources */ = {
