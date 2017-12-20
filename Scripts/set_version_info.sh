@@ -1,16 +1,39 @@
 #!/bin/bash
 
+beginswith() { case $2 in "$1"*) true;; *) false;; esac; }
+
+shopt -s dotglob
+
 versionModifiedAt=$(date -r versions +%s)
 needsUpdate=false
 
-for entry in **/*; do
-  if [[ "$entry" != "versions" ]]; then
-    if [ $(date -r "$entry" +%s) -gt "$versionModifiedAt" ]; then
-      needsUpdate=true
-      break;
-    fi
+processEntry() {
+  if [[ "$1" == "versions" ]]; then return; fi
+  if [[ "$1" == ".git" ]];     then return; fi
+  if beginswith ".git/" "$1";  then return; fi
+  
+  if [ $(date -r "$1" +%s) -gt "$versionModifiedAt" ]; then
+    needsUpdate=true
+  fi
+}
+
+# Top level
+for entry in *; do
+  processEntry "$entry"
+  if [[ $needsUpdate == true ]]; then
+    break;
   fi
 done
+
+# Nested
+if [[ $needsUpdate != true ]]; then
+  for entry in **/*; do
+    processEntry "$entry"
+    if [[ $needsUpdate == true ]]; then
+      break;
+    fi
+  done
+fi
 
 if [[ $needsUpdate != true ]]; then
   echo "No update needed"
